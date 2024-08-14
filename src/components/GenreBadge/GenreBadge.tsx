@@ -1,9 +1,15 @@
-import React from 'react';
+import React, {FC} from 'react';
+import {Badge, Typography} from "@mui/material";
 
-const GenreBadge = () => {
+interface IProps {
+    genresQuantity: number
+}
+
+const GenreBadge:FC<IProps> = ({genresQuantity}) => {
     return (
         <div>
-            badge
+            <Badge color="secondary" overlap="circular" badgeContent={genresQuantity}><Typography>genres{'   '}</Typography>
+            </Badge>
         </div>
     );
 };

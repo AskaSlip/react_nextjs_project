@@ -1,20 +1,16 @@
-"use server"
 import React, {FC} from 'react';
 import {IGenre} from "@/models/IGenre";
 import {getGenres} from "@/services/api.services";
-import {GetServerSideProps} from "next";
-
-interface IProps {
-    genres: IGenre[]
-}
 
 
-// Functional component to render genres list
-const Genres: FC<IProps> = ({ genres }) => {
+const Genres = async () => {
+
+let allGenres:IGenre[] = await getGenres()
+
     return (
         <div>
             <ul>
-                {genres.map(genre => (
+                {allGenres.map(genre => (
                     <li key={genre.id}>{genre.name}</li>
                 ))}
             </ul>
@@ -22,14 +18,5 @@ const Genres: FC<IProps> = ({ genres }) => {
     );
 };
 
-export const getServerSideProps: GetServerSideProps = async () => {
-    const genres = await getGenres();
-
-    return {
-        props: {
-            genres,
-        }
-    };
-};
 
 export default Genres;

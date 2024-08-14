@@ -1,11 +1,18 @@
-import React from 'react';
+import React, {FC, useState} from 'react';
+import {Rating} from "@mui/material";
 
-const StarsRating = () => {
+interface IProps {
+    rate: number
+}
+
+const StarsRating:FC<IProps> = ({rate}) => {
+
+
     return (
         <div>
-            rate
+            <Rating name="half-rating-read" defaultValue={rate} precision={0.5} max={10} readOnly />
         </div>
-    );
+    )
 };
 
 export default StarsRating;

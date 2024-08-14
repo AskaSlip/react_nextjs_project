@@ -1,9 +1,28 @@
-import React from 'react';
+import React, {FC} from 'react';
+import GenreBadge from "@/components/GenreBadge/GenreBadge";
+import {IMovieInfo} from "@/models/IMovieInfo";
+import PosterPreview from "@/components/PosterPreview/PosterPreview";
 
-const MovieInfo = () => {
+interface IProps {
+    movie: IMovieInfo
+}
+
+const MovieInfo:FC<IProps> = ({movie}) => {
+
+    let genresQuantity = movie.genres.length
+
+
     return (
         <div>
-            label, descrip, badges (окрема інфа про фільм)
+            <PosterPreview img={movie.poster_path}/>
+            {movie.original_title}
+            <hr/>
+            {movie.vote_average}
+            <hr/>
+            <GenreBadge genresQuantity={genresQuantity}/>
+            <hr/>
+            {movie.genres.map((genre, index) => (<span key={index}>{genre.name}</span>))}
+
         </div>
     );
 };

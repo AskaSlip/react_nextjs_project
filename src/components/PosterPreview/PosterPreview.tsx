@@ -1,16 +1,18 @@
-"use client"
-import React from 'react';
+import React, {FC} from 'react';
+import {getPoster} from "@/services/api.services";
 
-interface PosterPreviewProps {
-    posterPath: string;
+interface IProps {
+    img: string
 }
 
-const PosterPreview: React.FC<PosterPreviewProps> = ({ posterPath }) => {
+const PosterPreview: FC<IProps> = ({img}) => {
+
+    let poster = getPoster(img)
+
     return (
-        <img
-            src={`https://image.tmdb.org/t/p/w500${posterPath}`}
-            alt="Movie Poster"
-        />
+        <div>
+            <img src={poster} alt="poster"/>
+        </div>
     );
 };
 

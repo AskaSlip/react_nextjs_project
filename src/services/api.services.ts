@@ -14,14 +14,13 @@ const options = {
 
 export const getMovies = async (page: number = 1): Promise<IMovie[]> => {
     const response = await fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc`, options);
-    const data: IMovieResponse = await response.json();
-    return data.results;
+    const data = await response.json();
+    return data.results
+        // data.total_pages, data.page;
 };
 
-export const getPoster = async (id:number, backdrop_path: string) => {
-    const response = await fetch('https://api.themoviedb.org/3/movie/' + id + '/images' + backdrop_path, options)
-    const data = await response.json();
-    return data.backdrops;
+export const getPoster = (img:string) => {
+    return 'https://image.tmdb.org/t/p/w200' + img
 }
 
 export const getGenres = async (): Promise<IGenre[]> => {
@@ -29,4 +28,10 @@ export const getGenres = async (): Promise<IGenre[]> => {
     const data = await response.json();
     console.log(data);
     return data.genres
+}
+
+export const getMovieById = async (id:number) => {
+    const response = await fetch('https://api.themoviedb.org/3/movie/' + id + '?language=en-US', options)
+    const data = await response.json()
+    return data
 }
