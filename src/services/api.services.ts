@@ -1,6 +1,8 @@
 import {IMovieResponse} from "@/models/IMovieResponse";
 import {IMovie} from "@/models/IMovie";
 import {IGenre} from "@/models/IGenre";
+import {IMovieInfo} from "@/models/IMovieInfo";
+import {ITrailer} from "@/models/ITrailer";
 
 const accessToken = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyNGY1ODUxNDRhOTIzYzE2Nzc2M2FkM2M3NzEyZDllMSIsIm5iZiI6MTcyMzUxMTA5Ni41NDYzNzEsInN1YiI6IjY2YmFhZWViMmZiODRkZjc4ZTkxMzc5MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Re6iY3DVoorhVEwuiomrNKfqN6jUMhHsuVCTToJsPXE';
 
@@ -30,8 +32,30 @@ export const getGenres = async (): Promise<IGenre[]> => {
     return data.genres
 }
 
-export const getMovieById = async (id:number) => {
+export const getMovieById = async (id:number): Promise<IMovieInfo> => {
     const response = await fetch('https://api.themoviedb.org/3/movie/' + id + '?language=en-US', options)
     const data = await response.json()
     return data
+}
+
+export const getMovieVideos = async (id:number) : Promise<ITrailer[]>=> {
+    const response = await fetch('https://api.themoviedb.org/3/movie/' + id +'/videos?language=en-US', options)
+    const data =  await response.json()
+    return data.results
+}
+
+export const getTrailer = (url:string) => {
+    return 'https://www.youtube.com/embed/' + url
+}
+
+export const genresFilter = async (id: number): Promise<IMovie[]> => {
+    const response = await fetch('https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=' + id, options)
+    const data = await response.json()
+    return data.results
+}
+
+export const searchMovie = async (query: string) : Promise<IMovie[]>=> {
+    const response = await fetch(`https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&page=1`, options)
+    const data = await response.json()
+    return data.results
 }

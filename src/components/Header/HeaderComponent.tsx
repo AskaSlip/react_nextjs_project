@@ -1,11 +1,12 @@
 import React from 'react';
 import Link from "next/link";
+import UserInfo from "@/components/UserInfo/UserInfo";
 
 const HeaderComponent = () => {
     return (
         <div>
             <div>
-                Search movie
+                <Link href={'/search'}>Search Movie</Link>
             </div>
             <div>
                 <Link href={'/'}>Home</Link>
@@ -23,7 +24,7 @@ const HeaderComponent = () => {
                 notification
             </div>
             <div>
-                user profile
+                <UserInfo/>
             </div>
             <hr/>
         </div>

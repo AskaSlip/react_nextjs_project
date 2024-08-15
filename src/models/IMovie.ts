@@ -6,6 +6,6 @@ export interface IMovie {
     title: string,
     vote_average: number,
     overview: string,
-    genre_ids: IGenre[],
+    genre_ids: number[],
 
 }

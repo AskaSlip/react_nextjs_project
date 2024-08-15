@@ -2,6 +2,7 @@ import React, {FC} from 'react';
 import GenreBadge from "@/components/GenreBadge/GenreBadge";
 import {IMovieInfo} from "@/models/IMovieInfo";
 import PosterPreview from "@/components/PosterPreview/PosterPreview";
+import StarsRating from "@/components/StarsRating/StarsRating";
 
 interface IProps {
     movie: IMovieInfo
@@ -17,7 +18,7 @@ const MovieInfo:FC<IProps> = ({movie}) => {
             <PosterPreview img={movie.poster_path}/>
             {movie.original_title}
             <hr/>
-            {movie.vote_average}
+            <StarsRating rate={movie.vote_average}/>
             <hr/>
             <GenreBadge genresQuantity={genresQuantity}/>
             <hr/>

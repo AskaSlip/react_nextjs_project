@@ -8,7 +8,7 @@ interface IProps {
 const GenreBadge:FC<IProps> = ({genresQuantity}) => {
     return (
         <div>
-            <Badge color="secondary" overlap="circular" badgeContent={genresQuantity}><Typography>genres{'   '}</Typography>
+            <Badge color="secondary" overlap="circular" badgeContent={genresQuantity}><Typography>genres</Typography>
             </Badge>
         </div>
     );

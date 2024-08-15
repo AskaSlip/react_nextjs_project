@@ -1,7 +1,8 @@
 import React, {FC} from 'react';
 import {IGenre} from "@/models/IGenre";
-import {getGenres} from "@/services/api.services";
-
+import {getGenres, getMovies} from "@/services/api.services";
+import Link from "next/link";
+import MovieList from "@/components/MoviesList/MovieList";
 
 const Genres = async () => {
 
@@ -11,9 +12,10 @@ let allGenres:IGenre[] = await getGenres()
         <div>
             <ul>
                 {allGenres.map(genre => (
-                    <li key={genre.id}>{genre.name}</li>
+                    <li key={genre.id}><Link href={'/genres/' + genre.id}>{genre.name}</Link></li>
                 ))}
             </ul>
+            <MovieList/>
         </div>
     );
 };
