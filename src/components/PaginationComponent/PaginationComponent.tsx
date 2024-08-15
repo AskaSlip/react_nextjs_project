@@ -1,40 +1,30 @@
 "use client"
-
 import React from 'react';
-import {IMovie} from "@/models/IMovie";
-import {useSearchParams} from "next/navigation";
-
-interface IProps {
-    movies: IMovie[];
-    currentPage: number;
-    totalPages: number;
-}
-
-const PaginationComponent= () => {
+import {useRouter} from "next/navigation";
 
 
-    // const searchParams = useSearchParams();
-    // const setSearchParams = useSearchParams()[1];
-    // const page = parseInt(searchParams.get('page') || '1', 10);
-    //
-    // const handlePageChange = (newPage: number) => {
-    //     const params = new URLSearchParams(searchParams.toString());
-    //     params.set('page', newPage.toString());
-    //     setSearchParams(params.toString());
-    // };
+const PaginationComponent= ({page}: {page: number | string}) => {
 
+const router = useRouter()
+const pageNumber: number = Number(page)
+
+    const currentUrl = window ? window.location.href : null;
+console.log(currentUrl);
+
+//todo fix url
 
     return (
         <div >
-            {/*<button*/}
-            {/*    onClick={() => handlePageChange(page - 1)}*/}
-            {/*    disabled={page === 1}*/}
-            {/*>*/}
-            {/*    Prev*/}
-            {/*</button>*/}
-            {/*<button onClick={() => handlePageChange(page + 1)}>*/}
-            {/*    Next*/}
-            {/*</button>*/}
+            <button onClick={() => {
+                router.push(currentUrl + '/page/' + (pageNumber - 1))
+            }} disabled={pageNumber === 1}>
+                prev
+            </button>
+            <button onClick={() => {
+                router.push(currentUrl + '/page/' + (pageNumber + 1))
+            }} disabled={pageNumber === 500}>
+                next
+            </button>
         </div>
     )
         ;

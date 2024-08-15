@@ -1,23 +1,27 @@
-
-import React, {FC, useEffect, useState} from 'react';
-import {genresFilter, getMovies} from "@/services/api.services";
-import {IMovie} from "@/models/IMovie";
+import React, {FC} from 'react';
+import {genresFilter} from "@/services/api.services";
 import MoviesListCard from "@/components/MoviesListCard/MoviesListCard";
+import PaginationComponent from "@/components/PaginationComponent/PaginationComponent";
 
 interface IProps {
-    id: number
+    id: number,
+    page?: number
 }
 
-const GenreById:FC<IProps> = async ({id}) => {
+const GenreById:FC<IProps> = async ({id,page= 1}) => {
 
-    const filteredMoviesByGenre = await genresFilter(id)
+    console.log(id,page);
+    const filteredMoviesByGenre = await genresFilter(id, page)
 
 
     return (
         <div>
-            {filteredMoviesByGenre.map(movie => (
+            <div>
+                {filteredMoviesByGenre.map(movie => (
                 <MoviesListCard key={movie.id} movie={movie}/>
             ))}
+            </div>
+            <PaginationComponent page={page}/>
         </div>
     );
 };
