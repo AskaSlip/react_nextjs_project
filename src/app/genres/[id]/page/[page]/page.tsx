@@ -9,7 +9,6 @@ console.log('here')
     return (
         <div>
             <GenreById id={+id} page={+page}/>
-            <PaginationComponent page={+page}/>
         </div>
     );
 };
