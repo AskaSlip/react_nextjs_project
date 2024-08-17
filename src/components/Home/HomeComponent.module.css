@@ -26,3 +26,7 @@
     border-radius: 20px;
     width: 550px
 }
+
+.moviesWrap {
+    display: flex;
+}

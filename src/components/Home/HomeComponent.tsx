@@ -11,8 +11,9 @@ const HomeComponent = () => {
             </div>
 
             <div className={styles.rightSide}>
-                <div>
+                <div className={styles.moviesWrap}>
                     <Upcoming/>
+
                 </div>
                 <div className={styles.rated}>
                     <TopRated/>

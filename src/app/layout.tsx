@@ -5,6 +5,8 @@ import HeaderComponent from "@/components/Header/HeaderComponent";
 import {Provider} from "react-redux";
 import {store} from "@/redux/store/store";
 import StoreProvider from "@/app/storeProvider";
+import ThemeProvider from "./ThemeProvider";
+import Root from './Root'
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,13 +21,14 @@ export default function RootLayout({
 }: Readonly<PropType>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
       <StoreProvider>
-      <HeaderComponent/>
-      {children}
+          <ThemeProvider>
+              <Root>
+            <HeaderComponent/>
+                  {children}
+              </Root>
+          </ThemeProvider>
       </StoreProvider>
-
-      </body>
     </html>
   );
 }

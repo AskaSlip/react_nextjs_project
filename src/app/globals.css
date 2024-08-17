@@ -9,4 +9,12 @@ body {
     flex-direction: column;
 }
 
+.light-theme {
+    background: blue;
+}
+
+.dark-theme {
+    background: cyan;
+}
+
 /*here swith*/
