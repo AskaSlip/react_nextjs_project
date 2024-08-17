@@ -1,18 +1,21 @@
 import React from 'react';
+import TopRated from "@/components/TopRated/TopRated";
+import styles from './HomeComponent.module.css'
+import Upcoming from "@/components/Upcoming/Upcoming";
 
 const HomeComponent = () => {
     return (
-        <div>
-            home comp
-            <div>
-                img left
+        <div className={styles.wrap}>
+            <div className={styles.leftSide}>
+                <img className={styles.img} src="/home.jpg" alt="nav-img"/>
             </div>
-            <div> (//rigth)
+
+            <div className={styles.rightSide}>
                 <div>
-                    soon
+                    <Upcoming/>
                 </div>
-                <div>
-                    top rated
+                <div className={styles.rated}>
+                    <TopRated/>
                 </div>
 
             </div>

@@ -59,3 +59,15 @@ export const searchMovie = async (query: string, page:number) : Promise<IMovie[]
     const data = await response.json()
     return data.results
 }
+
+export const getTopRated = async () :Promise<IMovie[]>=> {
+    const response = await fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', options)
+    const data = await response.json()
+    return data.results
+}
+
+export const getUpcoming = async (): Promise<IMovie[]> => {
+    const response = await fetch('https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1', options)
+    const data = await response.json()
+    return data.results
+}

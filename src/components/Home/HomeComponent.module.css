@@ -1,0 +1,28 @@
+.wrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    margin-top: 20px;
+}
+
+.rightSide {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+}
+
+.rated {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.leftSide {
+    width: 35%;
+}
+
+.img {
+    border-radius: 20px;
+    width: 550px
+}
