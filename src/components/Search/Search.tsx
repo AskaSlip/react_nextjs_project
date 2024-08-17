@@ -5,8 +5,9 @@ import {IForm} from "@/models/IForm";
 import {searchMovie} from "@/services/api.services";
 import {IMovie} from "@/models/IMovie";
 import MoviesListCard from "@/components/MoviesListCard/MoviesListCard";
-import PaginationComponent from "@/components/PaginationComponent/PaginationComponent";
 import {useRouter, useSearchParams} from "next/navigation";
+import styles from '../MoviesList/MovieList.module.css'
+
 interface IProps {
     page: number
 }
@@ -18,7 +19,7 @@ const Search: FC<IProps> = ({page=1}) => {
     console.log(searchQuery);
 
     useEffect(() => {
-        const xxx = async () => {
+        const pageSearching = async () => {
             try {
                 const movies = await searchMovie(searchQuery || '', page);
                 setSearchedMovies(movies);
@@ -27,7 +28,7 @@ const Search: FC<IProps> = ({page=1}) => {
             }
         }
 
-        xxx()
+        pageSearching()
     }, []);
 
     let {formState: {isValid},register, handleSubmit} = useForm<IForm>({
@@ -65,7 +66,7 @@ const Search: FC<IProps> = ({page=1}) => {
                 />
                 <button disabled={!isValid}>search icon</button>
             </form>
-            <div>
+            <div className={styles.wrap}>
                 {searchedMovies.map(movie => (
                     <MoviesListCard key={movie.id} movie={movie}/>
                 ))}

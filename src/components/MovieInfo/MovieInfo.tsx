@@ -3,6 +3,7 @@ import GenreBadge from "@/components/GenreBadge/GenreBadge";
 import {IMovieInfo} from "@/models/IMovieInfo";
 import PosterPreview from "@/components/PosterPreview/PosterPreview";
 import StarsRating from "@/components/StarsRating/StarsRating";
+import {getMovies} from "@/services/api.services";
 
 interface IProps {
     movie: IMovieInfo
@@ -23,7 +24,8 @@ const MovieInfo:FC<IProps> = ({movie}) => {
             <GenreBadge genresQuantity={genresQuantity}/>
             <hr/>
             {movie.genres.map((genre, index) => (<span key={index}>{genre.name}</span>))}
-
+            <hr/>
+            <span>{movie.overview}</span>
         </div>
     );
 };

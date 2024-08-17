@@ -2,6 +2,7 @@ import React, {FC} from 'react';
 import {genresFilter} from "@/services/api.services";
 import MoviesListCard from "@/components/MoviesListCard/MoviesListCard";
 import PaginationComponent from "@/components/PaginationComponent/PaginationComponent";
+import styles from '../MoviesList/MovieList.module.css'
 
 interface IProps {
     id: number,
@@ -16,7 +17,7 @@ const GenreById:FC<IProps> = async ({id,page= 1}) => {
 
     return (
         <div>
-            <div>
+            <div className={styles.wrap}>
                 {filteredMoviesByGenre.map(movie => (
                 <MoviesListCard key={movie.id} movie={movie}/>
             ))}

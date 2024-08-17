@@ -3,6 +3,7 @@ import {IMovie} from "@/models/IMovie";
 import PosterPreview from "@/components/PosterPreview/PosterPreview";
 import StarsRating from "@/components/StarsRating/StarsRating";
 import Link from "next/link";
+import styles from './MovieListCard.module.css'
 
 interface IProps {
     movie: IMovie;
@@ -11,18 +12,14 @@ interface IProps {
 const MoviesListCard: FC<IProps> = ({ movie }) => {
     return (
         <div>
-            <div>
-                <Link href={
+                <Link className={styles.wrap} href={
                     {pathname: '/movies/' + movie.id}
                 }
                 >
                 <PosterPreview img={movie.poster_path}/>
-                <br/>
-                {movie.title}
-                <br/>
+                    <span>{movie.title}</span>
                 <StarsRating rate={movie.vote_average}/>
                 </Link>
-            </div>
         </div>
     );
 };

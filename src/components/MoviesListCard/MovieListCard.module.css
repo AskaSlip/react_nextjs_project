@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
+
+
+.wrap {
+    /*border-radius: 35px 35px 35px 35px;*/
+    /*-webkit-border-radius: 35px 35px 35px 35px;*/
+    /*-moz-border-radius: 35px 35px 35px 35px;*/
+    /*border: 2px solid #8f8f8f;*/
+    width: 18vw;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    height: 400px;
+    margin: 10px 0 10px 0;
+    text-decoration: none;
+    font-family: "Amatic SC", sans-serif;
+    font-weight: 700;
+    font-size: 25px;
+}
+
+.wrap:hover {
+    transform: scale(1.1);
+}

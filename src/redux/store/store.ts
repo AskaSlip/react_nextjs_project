@@ -1,5 +1,5 @@
 import {configureStore, createSlice} from "@reduxjs/toolkit";
-import {useDispatch, useSelector} from "react-redux";
+import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 
 type ThemeType = {
     theme: string
@@ -32,3 +32,5 @@ export const store = configureStore({
     }
 });
 
+export const useAppSelector: TypedUseSelectorHook<ReturnType<typeof store.getState>> = useSelector;
+export const useAppDispatch : () => typeof store.dispatch = useDispatch

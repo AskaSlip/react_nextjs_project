@@ -32,6 +32,7 @@ const Trailer: FC<IProps> = async ({id}) => {
                 title=&quot;Movie Trailer&quot;
 
             </iframe>
+            <span></span>
         </div>
     );
 };
