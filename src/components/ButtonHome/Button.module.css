@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
+
+
+.btnText {
+    font-family: "Amatic SC", sans-serif;
+    font-weight: 700;
+    font-size: 25px;
+}
+
+.btn {
+    width: 100px;
+    border: green 2px solid;
+    border-radius: 10px;
+    margin-top: 10px;
+}

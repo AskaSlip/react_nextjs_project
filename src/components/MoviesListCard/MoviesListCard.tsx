@@ -16,7 +16,7 @@ const MoviesListCard: FC<IProps> = ({ movie }) => {
                     {pathname: '/movies/' + movie.id}
                 }
                 >
-                <PosterPreview img={movie.poster_path}/>
+                <PosterPreview img={movie.poster_path} size={200}/>
                     <span>{movie.title}</span>
                 <StarsRating rate={movie.vote_average}/>
                 </Link>

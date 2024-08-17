@@ -3,7 +3,7 @@ import GenreBadge from "@/components/GenreBadge/GenreBadge";
 import {IMovieInfo} from "@/models/IMovieInfo";
 import PosterPreview from "@/components/PosterPreview/PosterPreview";
 import StarsRating from "@/components/StarsRating/StarsRating";
-import {getMovies} from "@/services/api.services";
+import styles from './MovieInfo.module.css'
 
 interface IProps {
     movie: IMovieInfo
@@ -15,17 +15,22 @@ const MovieInfo:FC<IProps> = ({movie}) => {
 
 
     return (
-        <div>
-            <PosterPreview img={movie.poster_path}/>
-            {movie.original_title}
-            <hr/>
-            <StarsRating rate={movie.vote_average}/>
-            <hr/>
-            <GenreBadge genresQuantity={genresQuantity}/>
-            <hr/>
-            {movie.genres.map((genre, index) => (<span key={index}>{genre.name}</span>))}
-            <hr/>
-            <span>{movie.overview}</span>
+        <div className={styles.wrap}>
+            <div >
+                <PosterPreview img={movie.poster_path} size={300}/>
+            </div>
+
+            <div className={styles.info}>
+                <div>{movie.original_title}</div>
+                <StarsRating rate={movie.vote_average}/>
+
+                <GenreBadge genresQuantity={genresQuantity}/>
+                {movie.genres.map((genre, index) => (<div key={index}>{genre.name}</div>))}
+            </div>
+
+            <div className={styles.overview}>{movie.overview}</div>
+
+
         </div>
     );
 };

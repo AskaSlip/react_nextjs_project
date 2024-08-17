@@ -1,21 +1,22 @@
 'use client'
-import { useRef } from 'react'
-import React from 'react';
-import { Provider } from 'react-redux'
+import React from 'react'
+import {Provider} from 'react-redux'
 import {store, useAppSelector} from "@/redux/store/store";
-import {createTheme, ThemeProvider} from "@mui/material";
+import {createTheme, PaletteMode, ThemeProvider} from "@mui/material";
 
 export default function StoreProvider({ children}: {
     children: React.ReactNode
 })
 {
-    let {theme: mode} = useAppSelector(state => state.ThemeSliceState )
+    // let {theme: mode} = useAppSelector(state => state.ThemeSliceState )
+    let mode = useAppSelector(state => state.ThemeSliceState.theme) as PaletteMode;
+
 
     const theme = React.useMemo(
         () =>
             createTheme({
                 palette: {
-                    mode,
+                    mode
                 },
             }),
         [mode],

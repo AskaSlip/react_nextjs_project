@@ -4,11 +4,12 @@ import styles from './Poster.module.css'
 
 interface IProps {
     img: string
+    size: number
 }
 
-const PosterPreview: FC<IProps> = ({img}) => {
+const PosterPreview: FC<IProps> = ({img,size}) => {
 
-    let poster = getPoster(img)
+    let poster = getPoster(img,size)
 
     return (
         <div>

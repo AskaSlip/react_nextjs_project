@@ -21,8 +21,8 @@ export const getMovies = async (page: number): Promise<IMovie[]> => {
 
 };
 
-export const getPoster = (img:string) => {
-    return 'https://image.tmdb.org/t/p/w200' + img
+export const getPoster = (img:string, size: number) => {
+    return `https://image.tmdb.org/t/p/w${size}` + img
 }
 
 export const getGenres = async (): Promise<IGenre[]> => {

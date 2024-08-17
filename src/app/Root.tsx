@@ -6,7 +6,7 @@ import {styled} from "@mui/material/styles";
 
 const inter = Inter({ subsets: ["latin"] });
 
-const Root = ({children}) =>  {
+const Root = ({children}: {children:any}) =>  {
     let {theme} = useAppSelector(state => state.ThemeSliceState )
     return (
         <body className={theme === 'light' ? 'light-theme' : 'dark-theme'} >
