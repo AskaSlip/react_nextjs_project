@@ -1,4 +1,3 @@
-import {IMovieResponse} from "@/models/IMovieResponse";
 import {IMovie} from "@/models/IMovie";
 import {IGenre} from "@/models/IGenre";
 import {IMovieInfo} from "@/models/IMovieInfo";
@@ -28,7 +27,6 @@ export const getPoster = (img:string, size: number) => {
 export const getGenres = async (): Promise<IGenre[]> => {
     const response = await fetch('https://api.themoviedb.org/3/genre/movie/list?language=en', options)
     const data = await response.json();
-    console.log(data);
     return data.genres
 }
 

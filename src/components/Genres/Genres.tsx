@@ -8,7 +8,11 @@ import MovieList from "@/components/MoviesList/MovieList";
 import styles from './Genres.module.css'
 import {useAppSelector} from "@/redux/store/store";
 
-const Genres =  () => {
+interface IProps {
+    noPagination?: boolean
+}
+
+const Genres:FC<IProps> =  ({noPagination}) => {
 
     let {theme} = useAppSelector(state => state.ThemeSliceState )
 
@@ -29,7 +33,7 @@ const Genres =  () => {
                 </div>
             ))}</div>
 
-            <MovieList/>
+            <MovieList noPagination={noPagination}/>
         </div>
     );
 };

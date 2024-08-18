@@ -8,12 +8,13 @@
 
 
     .btn {
-
-        border: green 2px solid;
+border: none;
         border-radius: 5px;
         margin-right: 20px;
         font-family: "Amatic SC", sans-serif;
         font-weight: 700;
         font-size: 25px;
         width: 10vw;
+        cursor: pointer;
+        color: inherit;
     }

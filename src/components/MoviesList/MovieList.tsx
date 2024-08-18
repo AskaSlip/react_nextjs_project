@@ -1,12 +1,16 @@
 "use client"
-import React, {useEffect, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import MoviesListCard from "@/components/MoviesListCard/MoviesListCard";
 import {getMovies} from "@/services/api.services";
 import PaginationComponent from "@/components/PaginationComponent/PaginationComponent";
 import styles from './MovieList.module.css'
 import {IMovie} from "@/models/IMovie";
 
-const MovieList = () => {
+interface IProps {
+    noPagination?: boolean
+}
+
+const MovieList:FC <IProps> = ({noPagination}) => {
 
     const [allMovies, setAllMovies] = useState<IMovie[]>([])
 
@@ -27,7 +31,7 @@ const MovieList = () => {
 
                 ))}
             </div>
-            <PaginationComponent page={1} totalPages={500}/>
+            {!noPagination && <PaginationComponent page={1} totalPages={500}/>}
         </div>
     );
 };

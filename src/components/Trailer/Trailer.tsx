@@ -1,15 +1,26 @@
-import React, {FC} from 'react';
+"use client"
+import React, {FC, useEffect, useState} from 'react';
 import {getMovieVideos, getTrailer} from "@/services/api.services";
 import styles from './Trailer.module.css'
+import {ITrailer} from "@/models/ITrailer";
 
 
 interface IProps {
     id: number
 }
 
-const Trailer: FC<IProps> = async ({id}) => {
+const Trailer: FC<IProps> =  ({id}) => {
 
-    const getVideos = await getMovieVideos(id);
+
+    const [getVideos, setGetVideos] = useState<ITrailer[]>([])
+
+
+    useEffect(() => {
+    getMovieVideos(id).then((movie) => {
+        setGetVideos(movie)
+    })
+
+    }, []);
     const movieTrailerUrl = getVideos.length > 0 ? getVideos[1] : null;
 
     if (!movieTrailerUrl) {

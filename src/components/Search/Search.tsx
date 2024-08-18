@@ -18,7 +18,6 @@ const Search: FC<IProps> = ({page=1}) => {
 
     const searchParams = useSearchParams()
     const searchQuery = searchParams.get('search')
-    console.log(searchQuery);
 
     const [totalPages, setTotalPages] = useState<number>()
 
@@ -28,7 +27,6 @@ const Search: FC<IProps> = ({page=1}) => {
                 const {movies, totalPages} = await searchMovie(searchQuery || '', page);
                 setSearchedMovies(movies);
                 setTotalPages(totalPages)
-                console.log(totalPages);
 
             } catch (error) {
                 console.error("Error searching movies:", error);
@@ -54,8 +52,9 @@ const Search: FC<IProps> = ({page=1}) => {
         handleSearch(searchQuery)
 
         try {
-            const {movies} = await searchMovie(searchQuery, page);
+            const {movies, totalPages} = await searchMovie(searchQuery, page);
             setSearchedMovies(movies);
+            setTotalPages(totalPages)
         } catch (error) {
             console.error("Error searching movies:", error);
         }
@@ -78,7 +77,7 @@ const Search: FC<IProps> = ({page=1}) => {
                     <MoviesListCard key={movie.id} movie={movie}/>
                 ))}
             </div>
-            <PaginationComponent hide={!searchedMovies.length} page={page} totalPages={totalPages || null}/>
+            <PaginationComponent page={page} totalPages={totalPages || null}/>
         </div>
     );
 };

@@ -3,15 +3,13 @@ import React from 'react';
 import {usePathname, useRouter, useSearchParams} from "next/navigation";
 import styles from './Pagination.module.css'
 
-const PaginationComponent= ({page, totalPages, hide}: {page: number | string, totalPages: number | null, hide?: boolean}) => {
+const PaginationComponent= ({page, totalPages}: {page: number | string, totalPages: number | null}) => {
 
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
 
-    console.log(totalPages);
-
-    if (totalPages === null || hide){
+    if (totalPages === null || totalPages === 1){
         return <></>
     }
 

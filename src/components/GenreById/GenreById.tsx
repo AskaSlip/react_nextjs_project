@@ -12,7 +12,6 @@ interface IProps {
 
 const GenreById:FC<IProps> = async ({id,page= 1}) => {
 
-    console.log(id,page);
     const {movies, totalPages} = await genresFilter(id, page)
 
 
