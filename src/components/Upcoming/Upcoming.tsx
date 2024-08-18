@@ -1,11 +1,18 @@
-import React from 'react';
+"use client"
+import React, {useEffect, useState} from 'react';
 import {getUpcoming} from "@/services/api.services";
 import MoviesListCard from "@/components/MoviesListCard/MoviesListCard";
 import styles from './Upcoming.module.css'
+import {IMovie} from "@/models/IMovie";
 
-const Upcoming = async () => {
+const Upcoming = () => {
+    const [upcomingMovies, setUpcomingMovies] = useState<IMovie[]>([])
 
-    const upcomingMovies = await getUpcoming()
+    useEffect(() => {
+    getUpcoming().then((movies) => {
+        setUpcomingMovies(movies)
+    })
+    }, []);
 
     return (
         <div className={styles.wrap}>

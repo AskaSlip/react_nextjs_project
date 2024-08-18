@@ -5,10 +5,13 @@ import UserInfo from "@/components/UserInfo/UserInfo";
 import ThemeSwitcher from "@/components/ThemeSwitcher/ThemeSwitcher";
 import Notification from "@/components/Notification/Notification";
 import styles from './Header.module.css'
+import {useAppSelector} from "@/redux/store/store";
 
 const HeaderComponent = () => {
+    let {theme} = useAppSelector(state => state.ThemeSliceState )
+
     return (
-        <div className={styles.wrap}>
+        <div className={`${styles.wrap} ${theme === 'light' ? 'light-box' : 'dark-box'}`}>
             <div className={styles.links}>
                 <div>
                     <Link className={styles.link} href={'/'}>Home</Link>

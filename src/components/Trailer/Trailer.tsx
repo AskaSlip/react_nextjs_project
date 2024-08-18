@@ -1,6 +1,7 @@
 import React, {FC} from 'react';
-import {ITrailer} from "@/models/ITrailer";
 import {getMovieVideos, getTrailer} from "@/services/api.services";
+import styles from './Trailer.module.css'
+
 
 interface IProps {
     id: number
@@ -23,7 +24,7 @@ const Trailer: FC<IProps> = async ({id}) => {
 
     return (
         <div>
-             <iframe width="420" height="315"
+             <iframe className={styles.frame} width="1000" height="600"
                      src={trailerUrl}> (//test)
                 frameBorder=&quot;0&quot;
                 allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;
@@ -32,7 +33,7 @@ const Trailer: FC<IProps> = async ({id}) => {
                 title=&quot;Movie Trailer&quot;
 
             </iframe>
-            <span></span>
+
         </div>
     );
 };

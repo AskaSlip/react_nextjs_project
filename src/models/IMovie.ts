@@ -1,5 +1,3 @@
-import {IGenre} from "@/models/IGenre";
-
 export interface IMovie {
     poster_path: string,
     id: number,

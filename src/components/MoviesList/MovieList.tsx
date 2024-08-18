@@ -1,16 +1,23 @@
-import React from 'react';
+"use client"
+import React, {useEffect, useState} from 'react';
 import MoviesListCard from "@/components/MoviesListCard/MoviesListCard";
 import {getMovies} from "@/services/api.services";
 import PaginationComponent from "@/components/PaginationComponent/PaginationComponent";
 import styles from './MovieList.module.css'
+import {IMovie} from "@/models/IMovie";
 
-const MovieList = async () => {
+const MovieList = () => {
 
+    const [allMovies, setAllMovies] = useState<IMovie[]>([])
 
-    let allMovies = await getMovies(1)
+    useEffect(() => {
+    getMovies(1).then((movie) => {
+        setAllMovies(movie)
+    })
+    }, []);
 
     return (
-        <div>
+        <div className={styles.wrap}>
             <div className={styles.wrap}>
                 {allMovies.map(movie => (
 
@@ -20,7 +27,7 @@ const MovieList = async () => {
 
                 ))}
             </div>
-            <PaginationComponent page={1}/>
+            <PaginationComponent page={1} totalPages={500}/>
         </div>
     );
 };

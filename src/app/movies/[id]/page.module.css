@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
+
+
 .wrap {
     margin-top: 50px;
     width: 90%;
     display: flex;
     justify-content: center;
-    align-items: center;
 
 }
 
@@ -13,4 +15,16 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+.btn {
+    margin-left: 2.5vw;
+    font-family: "Amatic SC", sans-serif;
+    font-weight: 700;
+    font-size: 25px;
+    width: 150px;
+    border-radius: 10px;
+    border: none;
+    color: inherit;
+
 }

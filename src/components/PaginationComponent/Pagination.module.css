@@ -1,0 +1,23 @@
+.wrap {
+    width: 40vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.left {
+    transform: rotate(90deg);
+
+}
+
+.right {
+    transform: rotate(-90deg);
+
+
+}

@@ -1,10 +1,14 @@
+"use client"
 import React from 'react';
 import TopRated from "@/components/TopRated/TopRated";
 import styles from './HomeComponent.module.css'
 import Upcoming from "@/components/Upcoming/Upcoming";
 import Button from "@/components/ButtonHome/Button";
+import {useAppSelector} from "@/redux/store/store";
 
 const HomeComponent = () => {
+
+    let {theme} = useAppSelector(state => state.ThemeSliceState )
 
 
     return (
@@ -14,12 +18,12 @@ const HomeComponent = () => {
             </div>
 
             <div className={styles.rightSide}>
-                <div className={styles.moviesWrap}>
+                <div className={`${styles.moviesWrap} ${theme === 'light' ? 'light-box' : 'dark-box'}`}>
                     <p className={styles.title}>Coming soon...</p>
                     <Upcoming/>
 
                 </div>
-                <div className={styles.rated}>
+                <div className={`${styles.moviesWrap} ${theme === 'light' ? 'light-box' : 'dark-box'}`}>
                     <p className={styles.title}>Top-3 movies by rating</p>
                     <TopRated/>
                 </div>

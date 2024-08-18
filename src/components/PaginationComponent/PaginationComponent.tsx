@@ -1,13 +1,20 @@
 "use client"
 import React from 'react';
 import {usePathname, useRouter, useSearchParams} from "next/navigation";
+import styles from './Pagination.module.css'
 
-
-const PaginationComponent= ({page}: {page: number | string}) => {
+const PaginationComponent= ({page, totalPages, hide}: {page: number | string, totalPages: number | null, hide?: boolean}) => {
 
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
+
+    console.log(totalPages);
+
+    if (totalPages === null || hide){
+        return <></>
+    }
+
 
     const pageNumber: number = Number(page);
 
@@ -20,11 +27,11 @@ const PaginationComponent= ({page}: {page: number | string}) => {
             return `${pathname}/page/${newPage}?${searchParams.toString()}`;
         }
     };
-//todo fix url
+
 
     return (
-        <div>
-            <button
+        <div className={styles.wrap}>
+            <button className={`${styles.btn} ${styles.left}`}
                 onClick={() => {
                     if (pageNumber > 1) {
                         router.push(createPageUrl(pageNumber - 1));
@@ -32,17 +39,17 @@ const PaginationComponent= ({page}: {page: number | string}) => {
                 }}
                 disabled={pageNumber === 1}
             >
-                prev
+                <img src="/arrow.png" alt="arrow"/>
             </button>
-            <button
+            <button className={`${styles.btn} ${styles.right}`}
                 onClick={() => {
                     if (pageNumber < 500) {
                         router.push(createPageUrl(pageNumber + 1));
                     }
                 }}
-                disabled={pageNumber === 500}
+                disabled={pageNumber === totalPages}
             >
-                next
+                <img src="/arrow.png" alt="arrow"/>
             </button>
         </div>
     )

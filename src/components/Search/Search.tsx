@@ -7,6 +7,8 @@ import {IMovie} from "@/models/IMovie";
 import MoviesListCard from "@/components/MoviesListCard/MoviesListCard";
 import {useRouter, useSearchParams} from "next/navigation";
 import styles from '../MoviesList/MovieList.module.css'
+import searchStyles from './Search.module.css'
+import PaginationComponent from "@/components/PaginationComponent/PaginationComponent";
 
 interface IProps {
     page: number
@@ -18,11 +20,16 @@ const Search: FC<IProps> = ({page=1}) => {
     const searchQuery = searchParams.get('search')
     console.log(searchQuery);
 
+    const [totalPages, setTotalPages] = useState<number>()
+
     useEffect(() => {
         const pageSearching = async () => {
             try {
-                const movies = await searchMovie(searchQuery || '', page);
+                const {movies, totalPages} = await searchMovie(searchQuery || '', page);
                 setSearchedMovies(movies);
+                setTotalPages(totalPages)
+                console.log(totalPages);
+
             } catch (error) {
                 console.error("Error searching movies:", error);
             }
@@ -44,11 +51,10 @@ const Search: FC<IProps> = ({page=1}) => {
 
     const searchCreator = async (data: IForm) => {
         const searchQuery = data.search;
-        console.log(searchQuery);
         handleSearch(searchQuery)
 
         try {
-            const movies = await searchMovie(searchQuery, page);
+            const {movies} = await searchMovie(searchQuery, page);
             setSearchedMovies(movies);
         } catch (error) {
             console.error("Error searching movies:", error);
@@ -57,20 +63,22 @@ const Search: FC<IProps> = ({page=1}) => {
 
 
     return (
-        <div>
-            <form onSubmit={handleSubmit(searchCreator)}>
-                <input
+        <div className={searchStyles.wrap}>
+            <form className={searchStyles.form} onSubmit={handleSubmit(searchCreator)}>
+                <input className={searchStyles.input}
                     type="text"
                     placeholder={'search movie...'}
                     {...register('search', { required: true })}
                 />
-                <button disabled={!isValid}>search icon</button>
+                <button className={searchStyles.btn} disabled={!isValid}><img src="/magnifying-glass.png" alt="search"/></button>
             </form>
+
             <div className={styles.wrap}>
                 {searchedMovies.map(movie => (
                     <MoviesListCard key={movie.id} movie={movie}/>
                 ))}
             </div>
+            <PaginationComponent hide={!searchedMovies.length} page={page} totalPages={totalPages || null}/>
         </div>
     );
 };

@@ -48,16 +48,17 @@ export const getTrailer = (url:string) => {
     return 'https://www.youtube.com/embed/' + url
 }
 
-export const genresFilter = async (id: number, page: number): Promise<IMovie[]> => {
+export const genresFilter = async (id: number, page: number): Promise<{ movies: IMovie[], totalPages: number }> => {
     const response = await fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc&with_genres=` + id, options)
     const data = await response.json()
-    return data.results
+    return {movies: data.results, totalPages: data.total_pages}
 }
 
-export const searchMovie = async (query: string, page:number) : Promise<IMovie[]>=> {
+export const searchMovie = async (query: string, page:number) : Promise<{movies: IMovie[], totalPages: number }>=> {
     const response = await fetch(`https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&page=${page}`, options)
     const data = await response.json()
-    return data.results
+
+    return {movies: data.results, totalPages: data.total_pages}
 }
 
 export const getTopRated = async () :Promise<IMovie[]>=> {

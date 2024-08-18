@@ -1,11 +1,16 @@
-import React from 'react';
+"use client"
+import React, {useEffect, useState} from 'react';
 import {getTopRated} from "@/services/api.services";
 import MoviesListCard from "@/components/MoviesListCard/MoviesListCard";
 import styles from './TopRated.module.css'
+import {IMovie} from "@/models/IMovie";
 
-const TopRated = async () => {
+const TopRated = () => {
+    const [topRatedMovies, setTopRatedMovies] = useState<IMovie[]>([])
 
-    const topRatedMovies = await getTopRated()
+    useEffect(() => {
+    getTopRated().then(movies => setTopRatedMovies(movies))
+    }, []);
 
     return (
         <div className={styles.wrap}>

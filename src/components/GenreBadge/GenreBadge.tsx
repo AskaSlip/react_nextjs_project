@@ -1,5 +1,6 @@
 import React, {FC} from 'react';
 import {Badge, Typography} from "@mui/material";
+import styles from './GenreBadge.module.css'
 
 interface IProps {
     genresQuantity: number
@@ -8,7 +9,7 @@ interface IProps {
 const GenreBadge:FC<IProps> = ({genresQuantity}) => {
     return (
         <div>
-            <Badge color="secondary" overlap="circular" badgeContent={genresQuantity}><Typography>genres</Typography>
+            <Badge color="secondary" overlap="circular" badgeContent={genresQuantity}><Typography className={styles.text}>genres</Typography>
             </Badge>
         </div>
     );

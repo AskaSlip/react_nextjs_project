@@ -1,25 +1,37 @@
-import React from 'react';
+"use client"
+
+import React, {useEffect, useState} from 'react';
 import MovieInfo from "@/components/MovieInfo/MovieInfo";
 import {getMovieById} from "@/services/api.services";
 import Link from "next/link";
-import ButtonTrailer from "@/components/ButtonTrailer/ButtonTrailer";
 import styles from './page.module.css'
+import {useAppSelector} from "@/redux/store/store";
+import {IMovieInfo} from "@/models/IMovieInfo";
 
 
-const MoviePage =async ({params:{id}}:{params:{id: number}}) => {
+const MoviePage = ({params:{id}}:{params:{id: number}}) => {
 
-    let getMovie = await getMovieById(id)
+    const [getMovie, setGetMovie] = useState<IMovieInfo>()
+
+
+    useEffect(() => {
+        getMovieById(id).then((movie) => {
+            setGetMovie(movie)
+        })
+    }, []);
+
+    let {theme} = useAppSelector(state => state.ThemeSliceState )
+
 
     return (
         <div className={styles.wrap}>
 
                 <Link href={'/movies'}>
-                    <button>back to movies</button>
+                    <button className={`${styles.btn} ${theme === 'light' ? 'light-box' : 'dark-box'}`}>back to movies</button>
                 </Link>
 
             <div className={styles.wrapCard}>
                 <MovieInfo movie={getMovie}/>
-                <ButtonTrailer params={{id}}/>
             </div>
         </div>
     );
